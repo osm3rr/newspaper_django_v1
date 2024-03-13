@@ -3,6 +3,10 @@
 {% block content %}
     {% if user.is_authenticated %}
         Hello my friend {{ user.username }}!
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Log out</button>
+        </form>
         {% for post in post_list %}
             <a href="{% url 'post_detail' post.pk %}"><h1>{{ post.title }}</h1></a>
             <p>{{ post.body }}</p>
